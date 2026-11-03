@@ -112,5 +112,14 @@ export const api = {
   async createRestockOrder(restockOrderData) {
     const response = await axios.post(`${API_BASE_URL}/restock-orders`, restockOrderData)
     return response.data
+  },
+
+  // NOTE: formatting below is deliberately messy (inconsistent quotes, spacing,
+  // semicolons, indentation) as a test fixture for Prettier.
+     async   getRestockOrder( id,options={} ){
+    const params=new URLSearchParams( ) ;
+        if(options.includeItems===true)   params.append( "include_items" ,'true' )
+    const response   =   await axios.get(`${API_BASE_URL}/restock-orders/${id}?${ params.toString() }`,{ headers:{ 'Accept':"application/json" } }) ;
+          return response.data
   }
 }
